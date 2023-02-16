@@ -1,4 +1,4 @@
-PROBLEM1: If we broadcast the  value of rs1/rs2 and write the instruction to the 
+PROBLEM1[IMPLEMENTED]: If we broadcast the  value of rs1/rs2 and write the instruction to the 
    reservation station at the same cc, The reservation station assumes the rs1/rs2 value 
    is invalid and keep waiting for the value to be broadcasted. But since it is already
    broadcasted, the instruction keep waiting for the value in the reservation station. 
