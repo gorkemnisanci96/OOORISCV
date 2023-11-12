@@ -45,18 +45,26 @@ Step8: Write instruction to the Reservation Station (For ALU instruction)
     - If the rs1 and rs2 values of the instruction are ready and the ALU control unit is not busy, the instruction is sent to the ALY control unit, which will perform the execution. This step is called DISPATCH. 
     - If there are multiple instructions ready to be dispatched, the reservation station chooses the instruction with the lowest index on the table.    
    
-Step9: Execution and Broadcast (for ALU instructions); 
+Step9: Execution and Broadcast for ALU instructions; 
     - The executution unit takes N-CC to execute the instruction. 
     - When the result is ready, it sets the broadcast_ready signal and wait for its turn to broadcast the result. 
     - Since there can be multiple execution units that wants to broadcast at the same time and the boardcast bus is shared among multiple execution units, core_control_unit uses Least Recently Granted First (LRGF) Arbiter to choose the next excution unit to brodcast its value.
     - The Value is broadcasted to all the all the reservation stations, load_store queue and the ROB. The broadcast contains the data, ROB address of the instruction and if the data is a memory address, which will be captured by the load_store queue. 
 
-Step10: Execution for LOAD/STORE instructions; 
-   - After Decoding the LOAD and STORE instructions are written to Load/Store queue.
+Step10: Execution and broadcast for LOAD/STORE instructions; 
+   - After Decoding, the LOAD and STORE instructions are written to Load/Store queue.
    - The Load Instruction reads an memory address and write the value to a destination register.
    - Store instruction reads value of a register and writes it to a memory location.
-   - 
-    
+   - Load/Store Queue keeps track of the broadcasted data. The data may be register value for store to be stored to the memory or memory address for store or load.
+   - Load Store queue sends the load/store instructions to the memory IN-ORDER.
+   - There is NO DATA FORWARDING between load and store instructions.   
+   - The queue works as a FIFO.
+   - When the read pointer points to a LOAD instruction, memory is not busy, and address of the load is ready, the load instruction is sent to memory unit for memory read operation immediately.
+   -  When the read pointer points to a store instruction, memory is not busy, store address and data are ready, the load store queue waits ROB commit pointer to point the store instruction. Only in commit, store instruction is sent to memory for memory write operation.
+   -  When memory read operation is complete, Data Memory Management unit (DMMU) sets its broadcast signal and waits grant from the core control unit to get the access to the Core Data Bus for broadcast operation.
+
+STEP11: Execution for Conditional Branch Instructions: 
+
 
 
     
