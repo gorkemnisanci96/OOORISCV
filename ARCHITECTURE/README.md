@@ -109,14 +109,16 @@ STEP11: Execution for Conditional Branch Instructions:
 
 # The Algorithms: 
 1-) Least Recently Used Algorithm: 
-The algorithm is used as a cache replacement and access grant algorithm in this project. In a 4-way set associative cache, we assign initial number so lines from 0 to 3. The line with number 0 is the least recently accessed line and line with number 3 is the most recently accessed line. So when we have to choose a valid line to replace, we choose the line that is least recently used. Everytime we access a cache line, we update its number to highest available number(3 in this case) and update the number of other lines accordingly. 
+The algorithm is used as a cache replacement and access grant algorithm in this project. In a 4-way set associative cache, we assign initial number so lines from 0 to 3. The line with number 0 is the least recently accessed line and line with number 3 is the most recently accessed line. So when we have to choose a valid line to replace, we choose the line that is least recently used. Everytime we access a cache line, we update its number to highest available number(3 in this case) and update the number of other lines accordingly. The figure below shows how to update the LRU counters. 
 
 
-<img src="figures/LRU.png" width="600" height="600">  
+<img src="figures/LRU.png" width="250" height="200">  
 
 
-
-
+2-) Pseudo Least Recently Used (PLRU) Algorithm: 
+Thr LRU algoritm assigns log2(WayNumber) bit counters for each line, which is expensive. So we may instead use Pseudo Least Recently Used algorithm to save power and area.
+- Each Cache Line uses 1-bit intead of Log2(WayNumber) used in LRU algorithm.
+- 
 
 
 
