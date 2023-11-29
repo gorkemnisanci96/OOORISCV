@@ -116,7 +116,7 @@ The algorithm is used as a cache replacement and access grant algorithm in this 
 
 
 2-) Pseudo Least Recently Used (PLRU) Algorithm: 
-Thr LRU algoritm assigns log2(WayNumber) bit counters for each line, which is expensive. So we may instead use Pseudo Least Recently Used algorithm to save power and area.
+The LRU algoritm assigns log2(WayNumber) bit counters for each line, which is expensive. So we may instead use Pseudo Least Recently Used algorithm to save power and area.
 - Each Cache Line uses 1-bit intead of Log2(WayNumber) used in LRU algorithm.
 - We initialize all the bits to 0.
 - Each time the line is accessed, we set the bit to one.
