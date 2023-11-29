@@ -7,7 +7,7 @@ The files in this dicectory explains the details of the Micro-Architecture of th
 - After reading the TLB and L1 Tag, we can compare the physical TAG and L1 Tag.
 - If Both L1 and L2 have hit, take the instructions from L1 cache and send them into the pipeline, where they will go to instruction queue eventually with their predicted branch target address and predicted taken/not-taken result.      
 - If there is no TLB tag that matches the TLB tag of the virtual address, Instruction Fetch Unit generates PAGE FAULT signal and stops instruction fetch until the PAGE FAULT is resolved.
-- The pysical memory is divided into 2^(physical page number) pages and virtual address is divided into 2^(Virtual Page Number) pages. Since the number of virtual pages are more than the number of physical pages, there needs to be a mapping between virtual and physical pages, which is done with TLB and page table. Each page has 2^(Page offset) bytes.   
+- The pysical memory is divided into 2^(physical page number) pages and virtual address is divided into 2^(Virtual Page Number) pages. Since the number of virtual pages are more than the number of physical pages, there needs to be a mapping between virtual and physical pages, which is done using TLB and page table. Each page has 2^(Page offset) bytes.   
 - The PAGE FAULT is handled as follows;
 - 1-) Check if the PAGE TABLE has the Virtual to Physical address conversion.
 - 2-) If the Page Table doesn't have the conversion, assign the next available Pysical Page number to the Virtual Page Number that caused to the PAGE FAULT. 
