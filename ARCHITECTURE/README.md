@@ -11,7 +11,7 @@ The files in this dicectory explains the details of the Micro-Architecture of th
 - 1-) Check if the PAGE TABLE has the Virtual to Physical address conversion.
 - 2-) If the Page Table doesn't have the conversion, assign the next available Pysical Page number to the Virtual Page Number that caused to the PAGE FAULT.
 - 3-) Then update the TLB with the conversion, generate the pysical address, perform the L1 Tag check and continue the fetch process.
-<img src="figures/TLB_L1_L2.png" width="600" height="600">  
+<img src="figures/TLB_L1_L2_addr.png" width="600" height="600">  
 
 
 
