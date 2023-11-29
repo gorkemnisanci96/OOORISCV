@@ -97,7 +97,27 @@ STEP11: Execution for Conditional Branch Instructions:
    - When JUMP instructions are committed, PC+4 are written to the rd reigster. So JUMP instructions wait for the PC+4 to be calculated and broadcasted to be ready in ROB.
    
 
-    
+# The MODULES: 
+1-) Translation Lookaside Buffer(TLB):   
+- TLB is a fully-associative cache memory that stores the recent virtual to physical memory transitions. 
+- It uses Pseudo-Least Recently Used Algorithm to decide the victim Cache.
+
+
+
+
+
+
+# The Algorithms: 
+1-) Least Recently Used Algorithm: 
+The algorithm is used as a cache replacement and access grant algorithm in this project. In a 4-way set associative cache, we assign initial number so lines from 0 to 3. The line with number 0 is the least recently accessed line and line with number 3 is the most recently accessed line. So when we have to choose a valid line to replace, we choose the line that is least recently used. Everytime we access a cache line, we update its number to highest available number(3 in this case) and update the number of other lines accordingly. 
+
+
+<img src="figures/LRU.png" width="600" height="600">  
+
+
+
+
+
 
 
 
