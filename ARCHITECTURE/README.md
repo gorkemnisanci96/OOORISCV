@@ -85,7 +85,6 @@ STEP11: Execution for Conditional Branch Instructions:
    - If at least one of the predictions(target address or taken/not-taken) are wrong, the core control unit sends FLUSH signal to all the units.
    - When Branch Instrunctions commit, there is no register write. So brach instructions are ready as soon as they are written to the ROB.
    - When JUMP instructions are committed, PC+4 are written to the rd reigster. So JUMP instructions wait for the PC+4 to be calculated and broadcasted to be ready in ROB.
-   - 
    
 
     
