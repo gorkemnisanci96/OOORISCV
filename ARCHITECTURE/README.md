@@ -64,8 +64,29 @@ Step10: Execution and broadcast for LOAD/STORE instructions;
    -  When memory read operation is complete, Data Memory Management unit (DMMU) sets its broadcast signal and waits grant from the core control unit to get the access to the Core Data Bus for broadcast operation.
 
 STEP11: Execution for Conditional Branch Instructions: 
-
-
+   - Conditional Branch instruction is read from the instruction queue with the taken/not-taken and target prediction of the instruction.
+   - THE JUMP EXECUTION UNIT.
+   - The instruction is sent to the JEU. The JEU is responsible from calculating if the condition of the branch holds or not.
+   - The JEU writes the instruction to its reservation table and waits for the rs1 and rs2 values to be ready.
+   - The JEU waits for the broadcast bus to broadcast rs1 and rs2 values if they are not ready. It uses ROB addreses of the rs1 and rs2 values to check.
+   - The JEU writes the ROB address of the branch instruction and taken/not-taken result to its FIFO.
+   - The JEU connects outputs of the FIFO(taken/non-taken bit, ROB addr, fifo empty ) to its own output.
+   - The Branch Target Calculator(BTC).
+   - All the control transfer instructions are written to the BTC unit, where the target address of the instructions are calculated.
+   - The target address of the instuctions are calculated and written to a FIFO with ROB address of the instruction. 
+   - The BRT table.
+   - The BRT table collects the taken/not-taken and target address information of the control  transfer instructions and stores them until commit.
+   - The BRT talbe reads the taken/not-taken information from the JEU.
+   - The BRT table reads the target address from the BTC unit.
+   - BRT table gets the predicted taken/not-taken result for branch instructions and predicted target address for all the branch instructions from instruction queue.
+   - When ROB points to a control transfer instruction(CTI), Core Control Unit sends commit signal with a ROB address to check if the CTI is ready to be committed.
+   - When the CTI is ready(target address and taken/not-taken) for the instruction with ROB sent from CCU, CTI responses with the comparison between predicted values and the calculated values.
+   - If all the predictions are correct, the instructions are committed.
+   - If at least one of the predictions(target address or taken/not-taken) are wrong, the core control unit sends FLUSH signal to all the units.
+   - When Branch Instrunctions commit, there is no register write. So brach instructions are ready as soon as they are written to the ROB.
+   - When JUMP instructions are committed, PC+4 are written to the rd reigster. So JUMP instructions wait for the PC+4 to be calculated and broadcasted to be ready in ROB.
+   - 
+   
 
     
 
