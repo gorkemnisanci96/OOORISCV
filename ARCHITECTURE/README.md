@@ -6,7 +6,11 @@ The files in this dicectory explains the details of the Micro-Architecture of th
 - The design uses Virtually-Indexed-Physically-Tagged (VIPT) Cache. The benefit of VIPT cache is that we can read the tag and data of the L1 cache while reading the physical page number from the TLB table. If we use Physically indexed physically(PIPT) Tagged Cache, L1 cache would need to wait TLB read first and then start reading the tag and data.
 - After reading the TLB and L1 Tag, we can compare the physical TAG and L1 Tag.
 - If Both L1 and L2 have hit, take the instructions from L1 cache and send them into the pipeline, where they will go to instruction queue eventually with their predicted branch target address and predicted taken/not-taken result.      
-- If there is no TLB tag that matches the TLB tag of the virtual address, Instruction Fetch Unit generates PAGE FAULT signal and stops instruction fetch until the PAGE FAULT is resolved.  
+- If there is no TLB tag that matches the TLB tag of the virtual address, Instruction Fetch Unit generates PAGE FAULT signal and stops instruction fetch until the PAGE FAULT is resolved.
+- The PAGE FAULT is handled as follows;
+- 1-) Check if the PAGE TABLE has the Virtual to Physical address conversion.
+- 2-) If the Page Table doesn't have the conversion, assign the next available Pysical Page number to the Virtual Page Number that caused to the PAGE FAULT.
+- 3-) Then update the TLB with the conversion, generate the pysical address, perform the L1 Tag check and continue the fetch process.
 <img src="figures/TLB_L1_L2.png" width="600" height="600">  
 
 
