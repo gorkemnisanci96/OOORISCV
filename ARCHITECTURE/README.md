@@ -1,9 +1,56 @@
 The files in this dicectory explains the details of the Micro-Architecture of the Core. 
 
 ## I-Instructions 
-<img src="figures/rv32i.png" width="600" height="600">  
+<img src="figures/rv32i_base_insts.png" width="600" height="600">  
+
+### LUI (Load Upper Immediate)
+
+- This instruction is used to build 32-bit contants.    
+- The LUI places the 20-bit immediate value in the top 20-bit of the destination register rd, filling the lowest 12-bits with zeros. 
+
+### AUIPC (add upper immediate to pc)   
+
+- It is used to build pc-relative addresses. 
+- The AUIPC forms a 32-bit offset from the 20-bit immediate, filling the lowest bits with zeros. 
+- It adds the offset to the PC of the AUIPC instruction and adds the result to the destination register rd.
 
 
+### JAL (Jump and Link)
+
+- Unconditional Jump instruction.
+- Immediate value is sign-extended and added to the address of the JAL instruction to form the target address. 
+- JAL stores the pc+4 into the register rd.
+- x1 is the standard return address register and x5 is the alternate link register.
+
+### JALR (Indirect Jump instruction)   
+
+- Unconditional Jump instruction.
+- Target address is calculated by adding the sign-extended 12-bit immediate to the register rs1 and then setting the least-significant bit of the result to zero.
+- The address of the instruction following the jump pc+4 is written to the register rd.
+
+### Conditiona Branches (BEQ, BNE, BLT, BLTU, BGE, BGEU)
+
+- These instructions compare two registers and jump or not depending on the result.
+- BEQ and BNE take the branch if registers rs1 and rs2 are equal or unequal respectively.
+- BLT and BLTU take the branch if rs1 is less than rs2, using signed and unsigned comparison respectively.
+- BGE and BGEU take the branch if rs1 is greater than or equal to rs2, using signed and unsigned comparison respectively.   
+
+### Load and Store Instructions 
+
+- RISC-V is load-store architecture, where only load and store instructions access memory and arithmetic instructions only operate on CPU registers.
+- Loads copy a value from memory to register rd.
+- Stores copy the value in register rs2 to memory.  
+- The effective address of the loads are obtained by adding register rs1 to the sign-extended 12-bit offset.
+- The LW instruction loads a 32-bit value from memory into rd.
+- LH loads a 16-bit value from memory, then sign-extends to 32-bits before storing in rd.
+- LHU loads a 16-bit value from memory but then zero extends to 32-bits before storing in rd.
+- LB and LBU are defined analogously for 8-bit values.
+
+
+### Fence 
+
+- Fence instruction is used to order device I/O and memory accesses.   
+- THIS processor orders the memory load and store instructions strictly so the memory accesses are IN-ORDER.    
 
 
 
