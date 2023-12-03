@@ -1,5 +1,12 @@
 The files in this dicectory explains the details of the Micro-Architecture of the Core. 
 
+## I-Instructions 
+<img src="figures/rv32i.png" width="600" height="600">  
+
+
+
+
+
 ## Instruction Fetch Stage 
 - Instruction Fetch unit is responsible from converting virtual address to physical address, reading instructions from external memory and writing them into the L1,L2 cache, updating the TLB table in case of a page fault, and perform branch prediction using Branch Target Buffer(BTB) and Branch History Table(BHT).
 - The design uses 32-bit virtual address.
