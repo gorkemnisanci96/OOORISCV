@@ -79,7 +79,7 @@ The files in this dicectory explains the details of the Micro-Architecture of th
 ### REM, REMU
 - REM and REMU provide the remainder of the corresponding division operation. 
 - For REM, the sign of the result equals the sign of the dividend.
-
+-For both signed and unsigned division, it holds that dividend = divisor × quotient + remainder.
 
 ## Instruction Fetch Stage 
 - Instruction Fetch unit is responsible from converting virtual address to physical address, reading instructions from external memory and writing them into the L1,L2 cache, updating the TLB table in case of a page fault, and perform branch prediction using Branch Target Buffer(BTB) and Branch History Table(BHT).
