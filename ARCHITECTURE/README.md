@@ -52,6 +52,33 @@ The files in this dicectory explains the details of the Micro-Architecture of th
 - Fence instruction is used to order device I/O and memory accesses.   
 - THIS processor orders the memory load and store instructions strictly so the memory accesses are IN-ORDER.    
 
+### ECALL 
+- The ECALL instruction is used to make a service request to the execution environment.    
+
+### EBREAK
+- EBREAK instruction is used to return the control to the debugging environment.    
+
+## M-Instructions 
+
+
+### MUL
+- MUL performs an 32-bit x 32-bit multiplication of rs1 and rs2 and places the LOWER 32-bit of the 64-bit result to the destination register. 
+
+### MULH
+- MULH performs an 32-bit(signed)x32-bit(signed) multiplication of rs1 and rs2 and places the HIGHER 32-bit of the 64-bit result to the destination register. 
+
+### MULHSU
+- MULHSU performs an 32-bit(unsigned)x32-bit(unsigned) multiplication of rs1 and rs2 and places the HIGHER 32-bit of the 64-bit result to the destination register. 
+
+### MULHU
+- MULHSU performs an 32-bit(signed)x32-bit(unsigned) multiplication of rs1 and rs2 and places the HIGHER 32-bit of the 64-bit result to the destination register.
+
+### DIV, DIVU
+- DIV and DIVU perform an XLEN bits by XLEN bits signed and unsigned integer division of rs1 by rs2, rounding towards zero.
+
+### REM, REMU
+- REM and REMU provide the remainder of the corresponding division operation. 
+- For REM, the sign of the result equals the sign of the dividend.
 
 
 ## Instruction Fetch Stage 
